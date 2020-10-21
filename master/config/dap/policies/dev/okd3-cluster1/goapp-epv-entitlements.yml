@@ -1,0 +1,5 @@
+---
+
+- !grant
+  role: !group dbaccess/db_accounts/delegation/consumers
+  members: !layer /dev/okd3-cluster1/goapp-epv

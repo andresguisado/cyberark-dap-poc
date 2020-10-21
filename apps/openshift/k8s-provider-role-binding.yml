@@ -1,0 +1,24 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: k8s-provider-{{ DEMOAPPS_NAMESPACE }}
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: [ "get", "update" ]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: k8s-provider-role-binding-{{ DEMOAPPS_NAMESPACE }}
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+subjects:
+  - kind: ServiceAccount
+    name: {{ K8S_PROVIDER_SERVICEACCOUNT }}
+    namespace: {{ DEMOAPPS_NAMESPACE }}
+roleRef:
+  kind: Role
+  apiGroup: rbac.authorization.k8s.io
+  name: k8s-provider-{{ DEMOAPPS_NAMESPACE }}

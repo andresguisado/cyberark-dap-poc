@@ -1,0 +1,23 @@
+---
+- &authenticated-resources
+  - !host
+    id: java-sidecar-app-account
+    annotations:
+      authn-k8s/namespace: demoapps-xqcb-syst
+      authn-k8s/service-account: java-sidecar-app-account
+      kubernetes/authentication-container-name: authenticator
+      openshift: true
+
+- !grant
+  role: !layer
+  members: *authenticated-resources
+
+- &demoapps-java-variables
+  - !variable url
+  - !variable username
+  - !variable password
+
+- !permit
+  role: !layer
+  privileges: [ "read", "execute" ]
+  resources: *demoapps-java-variables

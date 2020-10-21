@@ -1,0 +1,23 @@
+---
+#This policy defines k8s trusted resources that will be able to authenticate againt the k8s authenticator
+
+#This layer will be used to gather all the trusted resources
+- !layer
+  annotations:
+    openshift: true
+
+#`authenticated-resources` is an array of hosts matching resources in K8s.
+#The naming convention is namespace/resource_type/resource_name
+- &authenticated-resources
+  - !host
+    id: dap-cluster
+    annotations:
+      authn-k8s/namespace: cyberark-xqcb-syst
+      authn-k8s/service-account: dap-cluster
+      kubernetes/authentication-container-name: authenticator
+      openshift: true
+#These `authenticated-resources` represent logical applications
+#or workloads and can be authenticated with Conjur.
+- !grant
+  role: !layer
+  members: *authenticated-resources

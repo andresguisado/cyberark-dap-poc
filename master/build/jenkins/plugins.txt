@@ -1,0 +1,2 @@
+conjur-credentials:1.0.2
+workflow-aggregator:2.6

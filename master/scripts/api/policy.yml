@@ -1,0 +1,8 @@
+- !variable
+  id: mysecret
+
+- !host
+  id: myhost
+
+- !policy
+  id: mypolicy

@@ -1,0 +1,33 @@
+---
+# Root policy
+- !group admin
+
+- !grant
+  role: !group admin
+  members:
+    - !user admin
+
+- !group
+  id: jenkins-admins
+
+- !group
+  id: azuredevops-admins
+
+- !group
+  id: ansible-admins
+
+- !group 
+  id: devops
+
+- !group
+  id: okd3-cluster1-admins
+
+# System Policy
+- !policy
+  id: conjur
+  owner: !group admin
+
+# Environment Policies
+- !policy
+  id: dev
+  owner: !group admin

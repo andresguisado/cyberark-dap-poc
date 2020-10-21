@@ -1,0 +1,9 @@
+---
+#This policy defines every sub-policies within dev environment
+- !policy
+  id: cicd
+  owner: !group /devops
+
+- !policy
+  id: okd3-cluster1
+  owner: !group /okd3-cluster1-admins

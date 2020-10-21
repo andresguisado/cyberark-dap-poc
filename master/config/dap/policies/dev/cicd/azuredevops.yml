@@ -1,0 +1,25 @@
+---
+- !host
+  id: azuredevops01
+
+- &variables
+  - !variable
+    id: access_key_id
+    kind: password
+  - !variable
+    id: access_key_secret
+    kind: password
+  - !variable
+    id: targetuser
+    kind: username
+  - !variable
+    id: targetpwd
+    kind: password
+  - !variable
+    id: targetsshkey
+    kind: ssh-key
+
+- !permit
+  role: !host azuredevops01
+  privileges: [read, execute]
+  resources: *variables

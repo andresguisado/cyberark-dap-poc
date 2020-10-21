@@ -1,0 +1,46 @@
+---
+#This policy defines necessary configuration item required by the k8s authenticator
+
+#The below is section is mandatory
+- !variable ca/key
+- !variable ca/cert
+
+#[Optional] The below section is required when using seed-fetcher service or
+#when running followers outside the Kubernetes based cluster
+- !variable kubernetes/service-account-token
+- !variable kubernetes/ca-cert
+- !variable kubernetes/api-url
+
+# This webservice represents the K8s authenticator
+- !webservice
+
+# The `apps` policy defines Openshift resources that can be authenticated.
+
+- !policy
+  id: followers
+  owner: !group /admin
+
+- !policy
+  id: secretless-db
+  owner: !group /admin
+
+- !policy
+  id: goapp
+  owner: !group /admin
+
+- !policy
+  id: goapp-epv
+  owner: !group /admin
+
+- !policy
+  id: java-init-db
+  owner: !group /admin
+
+- !policy
+  id: java-sidecar-db
+  owner: !group /admin
+
+- !policy
+  id: k8s-provider-db
+  owner: !group /admin
+

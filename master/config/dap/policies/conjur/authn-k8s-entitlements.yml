@@ -1,0 +1,52 @@
+---
+#Policy to load under conjur policy node
+
+#The below section enables apps layer (composed of trusted k8s resources)
+
+
+## SEED-Fetcher - The below section enables followers to consume seeds
+#- !grant
+#  role: !layer seed-generation/consumers
+#  member: !layer authn-k8s/eks-cluster1/followers
+
+- !grant
+  role: !layer seed-generation/consumers
+  member: !layer authn-k8s/okd3-cluster1/followers
+
+#######
+
+## okd3-cluster1
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/followers
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/secretless-db
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/goapp
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/goapp-epv
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/java-init-db
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/java-sidecar-db
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1
+
+- !permit
+  role: !layer authn-k8s/okd3-cluster1/k8s-provider-db
+  privilege: [ authenticate ]
+  resource: !webservice authn-k8s/okd3-cluster1

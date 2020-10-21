@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openshift-dap-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: openshift-dap-operator
+  template:
+    metadata:
+      labels:
+        name: openshift-dap-operator
+    spec:
+      serviceAccountName: openshift-dap-operator
+      containers:
+        - name: openshift-dap-operator
+          # Replace this with the built image name
+          image: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/operator:11.7
+          command:
+          - openshift-dap-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "openshift-dap-operator"

@@ -1,0 +1,20 @@
+---
+- !policy
+  id: jenkins
+  owner: !group /jenkins-admins
+  annotations:
+    description: Conjur policy for Jenkins
+    jenkins: true
+
+- !policy
+  id: azuredevops
+  owner: !group /azuredevops-admins
+  annotations:
+    description: Conjur policy for Azure DevOps
+
+- !policy
+  id: ansible
+  owner: !group /ansible-admins
+  annotations:
+    description: Conjur policy for Ansible AWX
+    ansible: true

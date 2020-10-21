@@ -1,0 +1,27 @@
+---
+- !host
+  id: master01
+  annotations:
+    jenkins: true
+
+- &variables
+  - !variable
+    id: access_key_id
+    kind: password
+  - !variable
+    id: access_key_secret
+    kind: password
+  - !variable
+    id: targetuser
+    kind: username
+  - !variable
+    id: targetpwd
+    kind: password
+  - !variable
+    id: targetsshkey
+    kind: ssh-key
+
+- !permit
+  role: !host master01
+  privileges: [read, execute]
+  resources: *variables

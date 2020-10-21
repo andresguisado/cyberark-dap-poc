@@ -1,0 +1,83 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: goapp
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: go
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      role: demo
+      app: go
+  template:
+    metadata:
+      labels:
+        role: demo
+        app: go
+    spec:
+      serviceAccountName: {{ GOAPP_SERVICEACCOUNT }}
+      shareProcessNamespace: true
+      containers:
+      - name: authenticator
+        image: {{ CONJUR_AUTHENTICATOR_IMAGE }}
+        imagePullPolicy: Always
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: MY_POD_IP
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
+          - name: CONJUR_APPLIANCE_URL
+            value: {{ CONJUR_APPLIANCE_URL }}
+          - name: CONJUR_AUTHN_URL
+            value: {{ CONJUR_AUTHN_URL }}
+          - name: CONJUR_ACCOUNT
+            value: {{ CONJUR_ACCOUNT }}
+          - name: CONJUR_AUTHN_LOGIN
+            value: {{ GOAPP_CONJUR_AUTHN_LOGIN }}
+          - name: CONJUR_SSL_CERTIFICATE
+            valueFrom:
+              configMapKeyRef:
+                name: dap-certificate
+                key: ssl-certificate
+        volumeMounts:
+          - mountPath: /run/conjur
+            name: conjur-access-token
+      - name: demoapp
+        image: {{ GOAPP_IMAGE }}
+        imagePullPolicy: Always
+        env:
+          - name: CONJUR_APPLIANCE_URL
+            value: {{ CONJUR_APPLIANCE_URL }}
+          - name: CONJUR_ACCOUNT
+            value: {{ CONJUR_ACCOUNT }}
+          - name: CONJUR_AUTHN_TOKEN_FILE
+            value: /run/conjur/access-token
+          - name: CONJUR_USER_OBJECT
+            value: dev/okd3-cluster1/goapp/goapp_user
+          - name: CONJUR_PASS_OBJECT
+            value: dev/okd3-cluster1/goapp/goapp_pwd
+          - name: CONJUR_SSL_CERTIFICATE
+            valueFrom:
+              configMapKeyRef:
+                name: dap-certificate
+                key: ssl-certificate
+        volumeMounts:
+          - mountPath: /run/conjur
+            name: conjur-access-token
+      #imagePullSecrets:
+        #- name: dockerpullsecret-go-app-account
+      volumes:
+        - name: conjur-access-token
+          emptyDir:
+            medium: Memory

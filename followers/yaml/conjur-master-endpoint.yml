@@ -1,0 +1,16 @@
+---
+kind: "Endpoints"
+apiVersion: "v1"
+metadata:
+  name: {{ CONJUR_MASTER_SERVICE_NAME }} 
+  namespace: {{ CONJUR_NAMESPACE }}
+subsets: 
+- addresses:
+  - ip: {{ CONJUR_MASTER_IP }}
+  ports:
+  - name: "https"
+    port: 443
+  - name: "pg-main"
+    port: 5432
+  - name: "syslog"
+    port: 1999

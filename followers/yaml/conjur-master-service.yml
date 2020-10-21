@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ CONJUR_MASTER_SERVICE_NAME }}
+  namespace: {{ CONJUR_NAMESPACE }}
+spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: 443
+  - name: pg-main
+    port: 5432
+    protocol: TCP
+    targetPort: 5432
+  - name: syslog
+    port: 1999
+    protocol: TCP
+    targetPort: 1999
+  selector: {}

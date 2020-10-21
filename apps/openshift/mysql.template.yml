@@ -1,0 +1,190 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: java-init-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: java-init-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: java-init-mysql
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: java-init-db
+spec:
+  replicas: 1
+  serviceName: java-init-db
+  selector:
+    matchLabels:
+      app: java-init-db
+  template:
+    metadata:
+      labels:
+        app: java-init-db
+    spec:
+      containers:
+      - name: java-init-db
+        image: {{ DEMOAPPS_MYSQL_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+        env:
+          - name: MYSQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: MYSQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: MYSQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: java-sidecar-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: java-sidecar-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: java-sidecar-mysql
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: java-sidecar-db
+spec:
+  replicas: 1
+  serviceName: java-sidecar-db
+  selector:
+    matchLabels:
+      app: java-sidecar-db
+  template:
+    metadata:
+      labels:
+        app: java-sidecar-db
+    spec:
+      containers:
+      - name: java-sidecar-db
+        image: {{ DEMOAPPS_MYSQL_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+        env:
+          - name: MYSQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: MYSQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: MYSQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: secretless-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: secretless-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: secretless-db-mysql
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: secretless-db
+spec:
+  replicas: 1
+  serviceName: secretless-db
+  selector:
+    matchLabels:
+      app: secretless-db
+  template:
+    metadata:
+      labels:
+        app: secretless-db
+    spec:
+      containers:
+      - name: secretless-db
+        image: {{ DEMOAPPS_MYSQL_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+        env:
+          - name: MYSQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: MYSQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: MYSQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: k8s-provider-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: k8s-provider-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: k8s-provider-db-mysql
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: k8s-provider-db
+spec:
+  replicas: 1
+  serviceName: k8s-provider-db
+  selector:
+    matchLabels:
+      app: k8s-provider-db
+  template:
+    metadata:
+      labels:
+        app: k8s-provider-db
+    spec:
+      containers:
+      - name: k8s-provider-db
+        image: {{ DEMOAPPS_MYSQL_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3306
+        env:
+          - name: MYSQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: MYSQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: MYSQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+      #imagePullSecrets:
+        #- name: dockerpullsecret

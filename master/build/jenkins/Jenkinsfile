@@ -1,0 +1,12 @@
+node {
+   stage('Work') {
+      withCredentials([conjurSecretCredential(credentialsId: 'docker_password', 
+                                              variable: 'SECRET')]) {
+         String encoded = SECRET.bytes.encodeBase64().toString()
+         echo encoded
+      }
+   }
+   }
+   stage('Results') {
+      echo "Finished!"
+   }

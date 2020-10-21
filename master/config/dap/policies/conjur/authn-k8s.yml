@@ -1,0 +1,10 @@
+---
+#Each policy policy is linked to a DAP k8s authenticator
+#Each authenticator ID will match a policy ID accordinly
+#- !policy
+#  id: eks-cluster1
+#  owner: !group /admin
+
+- !policy
+  id: okd3-cluster1
+  owner: !group /admin

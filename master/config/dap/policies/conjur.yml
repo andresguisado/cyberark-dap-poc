@@ -1,0 +1,10 @@
+---
+#Policy for Kubernetes based authentication
+- !policy
+  id: authn-k8s
+  owner: !group /admin
+
+#Policy for seed fetcher service
+- !policy
+  id: seed-generation
+  owner: !group /admin

@@ -1,0 +1,247 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: java-init-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: java-init-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: java-init-pg
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: java-init-db
+spec:
+  replicas: 1
+  serviceName: java-init-db
+  selector:
+    matchLabels:
+      app: java-init-db
+  template:
+    metadata:
+      labels:
+        app: java-init-db
+    spec:
+      containers:
+      - name: java-init-db
+        image: {{ DEMOAPPS_PG_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRESQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: POSTGRESQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+        volumeMounts:
+          - name: demoapps-db-certs
+            mountPath: "/etc/certs/"
+            readOnly: true
+        command: ["/bin/sh", "-c"]
+        args:
+          - mkdir -p /opt/app-root/certs/;
+            install -m 0600 /etc/certs/* /opt/app-root/certs;
+            run-postgresql -c ssl=on -c ssl_cert_file=/opt/app-root/certs/server.crt -c ssl_key_file=/opt/app-root/certs/server.key
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+      volumes:
+      - name: demoapps-db-certs
+        secret:
+          secretName: demoapps-db-certs
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: java-sidecar-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  selector:
+    app: java-sidecar-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: java-sidecar-pg
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: java-sidecar-db
+spec:
+  replicas: 1
+  serviceName: java-sidecar-db
+  selector:
+    matchLabels:
+      app: java-sidecar-db
+  template:
+    metadata:
+      labels:
+        app: java-sidecar-db
+    spec:
+      containers:
+      - name: java-sidecar-db
+        image: {{ DEMOAPPS_PG_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRESQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: POSTGRESQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+        volumeMounts:
+        - name: demoapps-db-certs
+          mountPath: "/etc/certs/"
+          readOnly: true
+        command: ["/bin/sh", "-c"]
+        args:
+          - mkdir -p /opt/app-root/certs/;
+            install -m 0600 /etc/certs/* /opt/app-root/certs;
+            run-postgresql -c ssl=on -c ssl_cert_file=/opt/app-root/certs/server.crt -c ssl_key_file=/opt/app-root/certs/server.key
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+      volumes:
+      - name: demoapps-db-certs
+        secret:
+          secretName: demoapps-db-certs
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: secretless-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  ports:
+  - name: postgres
+    port: 5432
+    targetPort: 5432
+  selector:
+    app: secretless-db
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: secretless-db-pg
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: secretless-db
+spec:
+  replicas: 1
+  serviceName: secretless-db
+  selector:
+    matchLabels:
+      app: secretless-db
+  template:
+    metadata:
+      labels:
+        app: secretless-db
+    spec:
+      containers:
+      - name: secretless-db
+        image: {{ DEMOAPPS_PG_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRESQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: POSTGRESQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+        volumeMounts:
+        - name: demoapps-db-certs
+          mountPath: "/etc/certs/"
+          readOnly: true
+        command: ["/bin/sh", "-c"]
+        args:
+          - mkdir -p /opt/app-root/certs/;
+            install -m 0600 /etc/certs/* /opt/app-root/certs;
+            run-postgresql -c ssl=on -c ssl_cert_file=/opt/app-root/certs/server.crt -c ssl_key_file=/opt/app-root/certs/server.key
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+      volumes:
+      - name: demoapps-db-certs
+        secret:
+          secretName: demoapps-db-certs
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-provider-db
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+spec:
+  ports:
+  - name: postgres
+    port: 5432
+    targetPort: 5432
+  selector:
+    app: k8s-provider-db
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: k8s-provider-db-pg
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+  labels:
+    app: k8s-provider-db
+spec:
+  replicas: 1
+  serviceName: k8s-provider-db
+  selector:
+    matchLabels:
+      app: k8s-provider-db
+  template:
+    metadata:
+      labels:
+        app: k8s-provider-db
+    spec:
+      containers:
+      - name: k8s-provider-db
+        image: {{ DEMOAPPS_PG_IMAGE }}
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRESQL_USER
+            value: {{ DEMOAPPS_DB_USER }}
+          - name: POSTGRESQL_PASSWORD
+            value: {{ DEMOAPPS_DB_PASSWORD }}
+          - name: POSTGRESQL_DATABASE
+            value: {{ DEMOAPPS_DB_NAME }}
+        volumeMounts:
+        - name: demoapps-db-certs
+          mountPath: "/etc/certs/"
+          readOnly: true
+        command: ["/bin/sh", "-c"]
+        args:
+          - mkdir -p /opt/app-root/certs/;
+            install -m 0600 /etc/certs/* /opt/app-root/certs;
+            run-postgresql -c ssl=on -c ssl_cert_file=/opt/app-root/certs/server.crt -c ssl_key_file=/opt/app-root/certs/server.key
+      #imagePullSecrets:
+        #- name: dockerpullsecret
+      volumes:
+      - name: demoapps-db-certs
+        secret:
+          secretName: demoapps-db-certs

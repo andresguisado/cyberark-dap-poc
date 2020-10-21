@@ -1,0 +1,34 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: dap-authenticator-{{ CONJUR_NAMESPACE }}
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods", "serviceaccounts"]
+  verbs: ["get", "list"]
+- apiGroups: ["extensions"]
+  resources: [ "deployments", "replicasets"]
+  verbs: ["get", "list"]
+- apiGroups: ["apps"]  # needed on OpenShift 3.7+
+  resources: [ "deployments", "statefulsets", "replicasets"]
+  verbs: ["get", "list"]
+- apiGroups: [""]
+  resources: ["pods/exec"]
+  verbs: ["create", "get"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: dap-authenticator-role-binding-{{ DEMOAPPS_NAMESPACE }}
+  namespace: {{ DEMOAPPS_NAMESPACE }}
+subjects:
+- kind: ServiceAccount
+  name: {{ CONJUR_SERVICEACCOUNT }}
+  namespace: {{ CONJUR_NAMESPACE }}
+roleRef:
+  kind: Role
+  apiGroup: rbac.authorization.k8s.io
+  name: dap-authenticator-{{ CONJUR_NAMESPACE }}

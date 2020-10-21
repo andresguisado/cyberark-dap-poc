@@ -1,0 +1,20 @@
+pipeline {
+    agent any
+    stages {
+        stage ('Build Container') {
+            steps {
+                sh "docker build /container -t registry.cyberarkdemo.local:5000/pass-output:latest"
+            }
+        }
+    stage ('Push container to local registry') {
+            steps {
+                sh "docker push registry.cyberarkdemo.local:5000/pass-output:latest"
+            }
+        }
+    stage ('Delete local files') {
+            steps {
+                sh "rm -Rf /container"
+            }
+        }
+    }
+}

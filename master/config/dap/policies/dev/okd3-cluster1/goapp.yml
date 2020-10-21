@@ -1,0 +1,23 @@
+---
+- &authenticated-resources
+  - !host
+    id: go-app-account
+    annotations:
+      authn-k8s/namespace: demoapps-xqcb-syst
+      authn-k8s/service-account: go-app-account
+      kubernetes/authentication-container-name: authenticator
+      openshift: true
+
+- !grant
+  role: !layer
+  members: *authenticated-resources
+
+
+- &demoapps-goapp-variables
+  - !variable goapp_user
+  - !variable goapp_pwd
+
+- !permit
+  role: !layer
+  privileges: [ "read", "execute" ]
+  resources: *demoapps-goapp-variables

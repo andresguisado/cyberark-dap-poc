@@ -1,0 +1,7 @@
+---
+- !delete
+   record: !variable dev/secrets/targetpwd
+- !delete
+   record: !variable dev/secrets/targetsshkey
+- !delete
+   record: !variable dev/secrets/targetuser

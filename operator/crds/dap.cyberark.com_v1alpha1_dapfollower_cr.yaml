@@ -1,0 +1,19 @@
+apiVersion: dap.cyberark.com/v1alpha1
+kind: DAPFollower
+metadata:
+  name: dap-follower
+spec:
+  #followerReplicas: 2
+  conjurAccount: danske
+  dapMasterHostname: dap-master2.cyberarkdemo.net
+   #cybeark-dap-follower by default
+  serviceAccountName: dap-cluster
+  conjurAuthnLogin: host/conjur/authn-k8s/okd4-cluster1/followers/dap-cluster
+  authenticatorId: okd4-cluster1
+  images:
+    conjur: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/conjur:11.7 
+    postgres: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/postgres:11.7
+    info: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/info:11.7
+    seedFetcher: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/seedfetcher:11.7
+    nginx: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/nginx:11.7
+    syslogNg: image-registry.openshift-image-registry.svc:5000/cyberark-dap-operator/syslog-ng:11.7

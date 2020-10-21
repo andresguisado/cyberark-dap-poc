@@ -1,0 +1,50 @@
+version: '3'
+services:
+
+###################
+#     CONJUR      #
+###################
+  dap-master:
+    image: "registry.tld/conjur-appliance:11.7.0"
+    container_name: dap-master
+    restart: unless-stopped
+    security_opt:
+      - seccomp:unconfined
+    ports:
+      - "443:443"
+      - "5432:5432"
+      - "1999:1999"
+    networks:
+      - dap
+    volumes:
+      - /var/data/log/conjur:/var/log/conjur:Z
+      - /var/data/conjur/backup:/opt/conjur/backup:Z
+      
+  dap-cli:
+    build: "./build/dap-cli"
+    image: "local/dap-cli"
+    container_name: "dap-cli"
+    restart: always
+    networks:
+      - dap
+    volumes:
+      - ./config/dap/policies:/root/dap-policies:Z
+
+###################
+#     TARGET      #
+###################
+  target:
+    image: "andresguisado/ansible-target:latest"
+    #image: "local/target"
+    #build: "./build/ansible_target"
+    container_name: "target"
+    restart: "no"
+    ports:
+      - "10022:22"
+    networks:
+      - dap
+
+
+
+networks:
+  dap:

@@ -1,0 +1,7 @@
+---
+#This policy defines k8s trusted resources that will be able to authenticate againt the k8s authenticator
+
+#This layer will be used to gather all the trusted resources
+- !layer
+  annotations:
+    openshift: true
