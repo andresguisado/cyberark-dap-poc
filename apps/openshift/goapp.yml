@@ -64,9 +64,9 @@ spec:
           - name: CONJUR_AUTHN_TOKEN_FILE
             value: /run/conjur/access-token
           - name: CONJUR_USER_OBJECT
-            value: dev/okd3-cluster1/goapp/goapp_user
+            value: dev/k8s-cluster1/goapp/goapp_user
           - name: CONJUR_PASS_OBJECT
-            value: dev/okd3-cluster1/goapp/goapp_pwd
+            value: dev/k8s-cluster1/goapp/goapp_pwd
           - name: CONJUR_SSL_CERTIFICATE
             valueFrom:
               configMapKeyRef:

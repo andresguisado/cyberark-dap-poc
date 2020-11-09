@@ -1,31 +1,31 @@
 ---
 ## Permissions
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/secretless-db
+  role: !layer authn-k8s/k8s-cluster1/secretless-db
   members:
-  - !layer /dev/okd3-cluster1/secretless-db
+  - !layer /dev/k8s-cluster1/secretless-db
 
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/goapp
+  role: !layer authn-k8s/k8s-cluster1/goapp
   members:
-  - !layer /dev/okd3-cluster1/goapp
+  - !layer /dev/k8s-cluster1/goapp
 
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/goapp-epv
+  role: !layer authn-k8s/k8s-cluster1/goapp-epv
   members:
-  - !layer /dev/okd3-cluster1/goapp-epv
+  - !layer /dev/k8s-cluster1/goapp-epv
 
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/java-init-db
+  role: !layer authn-k8s/k8s-cluster1/java-init-db
   members:
-  - !layer /dev/okd3-cluster1/java-init-db
+  - !layer /dev/k8s-cluster1/java-init-db
 
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/java-sidecar-db
+  role: !layer authn-k8s/k8s-cluster1/java-sidecar-db
   members:
-  - !layer /dev/okd3-cluster1/java-sidecar-db
+  - !layer /dev/k8s-cluster1/java-sidecar-db
 
 - !grant
-  role: !layer authn-k8s/okd3-cluster1/k8s-provider-db
+  role: !layer authn-k8s/k8s-cluster1/k8s-provider-db
   members:
-  - !layer /dev/okd3-cluster1/k8s-provider-db
+  - !layer /dev/k8s-cluster1/k8s-provider-db

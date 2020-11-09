@@ -9,9 +9,9 @@ data:
   DBName:   bXlhcHBEQg==
 stringData:
   conjur-map: |-   
-    username: dev/okd3-cluster1/k8s-provider-db/username
-    password: dev/okd3-cluster1/k8s-provider-db/password
-    url: dev/okd3-cluster1/k8s-provider-db/url
+    username: dev/k8s-cluster1/k8s-provider-db/username
+    password: dev/k8s-cluster1/k8s-provider-db/password
+    url: dev/k8s-cluster1/k8s-provider-db/url
 
 
 ---

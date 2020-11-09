@@ -20,7 +20,7 @@
   id: devops
 
 - !group
-  id: okd3-cluster1-admins
+  id: k8s-cluster1-admins
 
 # System Policy
 - !policy

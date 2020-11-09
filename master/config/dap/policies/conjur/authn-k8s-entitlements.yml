@@ -11,42 +11,42 @@
 
 - !grant
   role: !layer seed-generation/consumers
-  member: !layer authn-k8s/okd3-cluster1/followers
+  member: !layer authn-k8s/k8s-cluster1/followers
 
 #######
 
-## okd3-cluster1
+## k8s-cluster1
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/followers
+  role: !layer authn-k8s/k8s-cluster1/followers
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/secretless-db
+  role: !layer authn-k8s/k8s-cluster1/secretless-db
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/goapp
+  role: !layer authn-k8s/k8s-cluster1/goapp
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/goapp-epv
+  role: !layer authn-k8s/k8s-cluster1/goapp-epv
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/java-init-db
+  role: !layer authn-k8s/k8s-cluster1/java-init-db
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/java-sidecar-db
+  role: !layer authn-k8s/k8s-cluster1/java-sidecar-db
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1
 
 - !permit
-  role: !layer authn-k8s/okd3-cluster1/k8s-provider-db
+  role: !layer authn-k8s/k8s-cluster1/k8s-provider-db
   privilege: [ authenticate ]
-  resource: !webservice authn-k8s/okd3-cluster1
+  resource: !webservice authn-k8s/k8s-cluster1

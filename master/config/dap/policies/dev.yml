@@ -5,5 +5,5 @@
   owner: !group /devops
 
 - !policy
-  id: okd3-cluster1
-  owner: !group /okd3-cluster1-admins
+  id: k8s-cluster1
+  owner: !group /k8s-cluster1-admins

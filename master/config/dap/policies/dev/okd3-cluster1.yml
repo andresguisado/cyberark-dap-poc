@@ -2,7 +2,7 @@
 #This policy defines permissions for testapp project resources in openshift cluster
 - !policy
   id: secretless-db
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
@@ -10,7 +10,7 @@
 
 - !policy
   id: goapp
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
@@ -18,7 +18,7 @@
 
 - !policy
   id: goapp-epv
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
@@ -26,7 +26,7 @@
 
 - !policy
   id: java-init-db
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
@@ -34,7 +34,7 @@
 
 - !policy
   id: java-sidecar-db
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
@@ -42,7 +42,7 @@
     
 - !policy
   id: k8s-provider-db
-  owner: !group /okd3-cluster1-admins
+  owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:

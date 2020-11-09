@@ -6,5 +6,5 @@
 #  owner: !group /admin
 
 - !policy
-  id: okd3-cluster1
+  id: k8s-cluster1
   owner: !group /admin
