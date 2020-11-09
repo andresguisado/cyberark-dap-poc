@@ -4,4 +4,4 @@
 #This layer will be used to gather all the trusted resources
 - !layer
   annotations:
-    openshift: true
+    kubernetes: true

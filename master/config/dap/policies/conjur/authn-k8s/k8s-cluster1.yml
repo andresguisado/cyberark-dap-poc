@@ -14,7 +14,7 @@
 # This webservice represents the K8s authenticator
 - !webservice
 
-# The `apps` policy defines Openshift resources that can be authenticated.
+# The `apps` policy defines kubernetes resources that can be authenticated.
 
 - !policy
   id: followers

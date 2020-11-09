@@ -6,7 +6,7 @@
       authn-k8s/namespace: demoapps-xqcb-syst
       authn-k8s/service-account: java-init-app-account
       authn-k8s/authentication-container-name: authenticator
-      openshift: true
+      kubernetes: true
 
 - !grant
   role: !layer

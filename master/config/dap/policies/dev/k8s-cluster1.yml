@@ -1,12 +1,12 @@
 ---
-#This policy defines permissions for testapp project resources in openshift cluster
+#This policy defines permissions for testapp project resources in kubernetes cluster
 - !policy
   id: secretless-db
   owner: !group /k8s-cluster1-admins
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
 
 - !policy
   id: goapp
@@ -14,7 +14,7 @@
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
 
 - !policy
   id: goapp-epv
@@ -22,7 +22,7 @@
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
 
 - !policy
   id: java-init-db
@@ -30,7 +30,7 @@
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
 
 - !policy
   id: java-sidecar-db
@@ -38,7 +38,7 @@
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
     
 - !policy
   id: k8s-provider-db
@@ -46,4 +46,4 @@
   body:
     - !layer
       annotations:
-        openshift: true
+        kubernetes: true
