@@ -9,6 +9,9 @@ COPY cyberark-conjur-1.0.7.tar.gz /tmp
 USER root
 RUN yum install -y python3-pip
 RUN pip3 install ansible
+RUN dnf install epel-release -y
+RUN dnf makecache
+RUN dnf install sshpass -y
 #USER jenkins
 #RUN ansible-galaxy collection install cyberark.conjur
 #RUN mkdir -p $JENKINS_HOME/.ansible/collections
