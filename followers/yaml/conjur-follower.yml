@@ -20,6 +20,9 @@ metadata:
   name: dap-follower
 spec:
   replicas: {{ CONJUR_FOLLOWER_COUNT }}
+  selector:
+    matchLabels:
+      app: dap-follower
   template:
     metadata:
       labels:
