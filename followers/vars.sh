@@ -8,8 +8,8 @@ export PLATFORM=kubernetes
 #Follower 
 export CONJUR_APPLIANCE_IMAGE=andresguisado/conjur-appliance:11.7.0
 #export CONJUR_APPLIANCE_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/conjur-appliance:11.7.0
-#export SEEDFETCHER_IMAGE=cyberark/dap-seedfetcher:latest
-export SEEDFETCHER_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/dap-seedfetcher:latest
+export SEEDFETCHER_IMAGE=cyberark/dap-seedfetcher:latest
+#export SEEDFETCHER_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/dap-seedfetcher:latest
 export CONJUR_NAMESPACE=cyberark
 export CONJUR_SERVICEACCOUNT=dap-cluster
 export CONJUR_FOLLOWER_COUNT=1

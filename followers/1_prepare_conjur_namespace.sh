@@ -9,7 +9,9 @@ main() {
   set_namespace $CONJUR_NAMESPACE
   create_service_account
   create_cluster_role
-  #configure_oc_rbac
+  if [[ "${PLATFORM}" = "openshift" ]]; then
+    configure_oc_rbac
+  fi
   announce "Conjur namespace ready."
 
 }
