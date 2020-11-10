@@ -85,17 +85,20 @@ $ ./scripts/dap/4_load_variables.sh
 $ ./scripts/dap/5_enable_master_authn.sh
 ```
 
-## Start Jenkins
+## Start Jenkins + Ansible OSS conjur plugin
 
-### Set required parameters
-
-```bash
-$ ./scripts/jenkins/1_bootstrap_jenkins.sh
-```
-
-#### Step 1 
+### Step 1
 
 - Start and configure the jenkins container 
 ```bash
 $ ./scripts/jenkins/1_bootstrap_jenkins.sh
+```
+
+## Start Target
+
+### Step 1
+
+- Start and configure the ansible-target container 
+```bash
+$ ./scripts/ansible-target/1_start_ansible_target.sh
 ```
