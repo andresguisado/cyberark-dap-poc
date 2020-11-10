@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+./stop.sh
+
 ./0_check_dependencies.sh
 ./1_prepare_conjur_namespace.sh
 
