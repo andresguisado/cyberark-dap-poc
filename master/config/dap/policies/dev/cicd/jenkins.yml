@@ -6,6 +6,15 @@
 
 - &variables
   - !variable
+    id: github_key
+    kind: ssh-key
+  - !variable
+    id: docker_username
+    kind: username
+  - !variable
+    id: docker_password
+    kind: password
+  - !variable
     id: access_key_id
     kind: password
   - !variable
