@@ -90,7 +90,7 @@ $ ./scripts/dap/5_enable_master_authn.sh
 ### Set required parameters
 
 ```bash
-$ ./scripts/jenkins/1_bootstrap_env.sh
+$ ./scripts/jenkins/1_bootstrap_jenkins.sh
 ```
 
 #### Step 1 
