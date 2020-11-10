@@ -116,6 +116,6 @@ spec:
           limits:
             memory: "4Gi"
             cpu: "1000m"
-      #imagePullSecrets:
-        #- name: docker-hub-registry
+      imagePullSecrets:
+        - name: docker-hub-registry
         #- name: cybr-harbor-registry

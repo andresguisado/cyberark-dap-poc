@@ -2,24 +2,24 @@
 ##########
 # CONFIG #
 ##########
-#export PLATFORM=kubernetes
-export PLATFORM=openshift
+export PLATFORM=kubernetes
+#export PLATFORM=openshift
 
 #Follower 
-#export CONJUR_APPLIANCE_IMAGE=registry.cyberarkdemo.com/cyberark/dap:11.7.0
-export CONJUR_APPLIANCE_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/conjur-appliance:11.7.0
+export CONJUR_APPLIANCE_IMAGE=andresguisado/conjur-appliance:11.7.0
+#export CONJUR_APPLIANCE_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/conjur-appliance:11.7.0
 #export SEEDFETCHER_IMAGE=cyberark/dap-seedfetcher:latest
 export SEEDFETCHER_IMAGE=image-registry.openshift-image-registry.svc:5000/ag-cyberark/dap-seedfetcher:latest
-export CONJUR_NAMESPACE=cyberark-xqcb-syst
+export CONJUR_NAMESPACE=cyberark
 export CONJUR_SERVICEACCOUNT=dap-cluster
 export CONJUR_FOLLOWER_COUNT=1
 
 # Authenticator ID
-#export AUTHENTICATOR_ID=k8s-cluster1
-export AUTHENTICATOR_ID=okd4-cluster1
+export AUTHENTICATOR_ID=k8s-cluster1
+#export AUTHENTICATOR_ID=okd4-cluster1
 
 #Master
-export CONJUR_APPLIANCE_URL=https://dap-master2.cyberarkdemo.net
+export CONJUR_APPLIANCE_URL=https://dap-master.plangiro.com
 export CONJUR_ACCOUNT=cybr
 
 

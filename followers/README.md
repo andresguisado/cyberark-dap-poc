@@ -5,6 +5,16 @@
 - Scripts have an order that needs to be followed.
 - Cleaning scripts can be used to clean all or part of what has been deployed.
 
+### Pre-requisite
+
+```bash
+$ kubectl create ns cyberark
+```
+
+```bash
+$ kubectl create secret docker-registry docker-hub-registry --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@gmail.com --docker-server=index.docker.io/v1 -n cyberark
+```
+
 ### Start
 
 ```bash
