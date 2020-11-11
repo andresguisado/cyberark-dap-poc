@@ -84,7 +84,7 @@ add_new_authenticator() {
   announce "Updating list of whitelisted authenticators..."
   
   set +e
-  CURRENT_AUTHENTICATORS=$(docker exec dap-master bash -c "evoke variable list CONJUR_AUTHENTICATORS | cut -d '=' -f 2" | sed 's/"//g')
+  CURRENT_AUTHENTICATORS=$(docker exec dap-master bash -c "evoke variable list CONJUR_AUTHENTICATORS | head -n 1")
   set -e
 
   AUTHENTICATOR_ID=authn-k8s/$AUTHENTICATOR_ID
