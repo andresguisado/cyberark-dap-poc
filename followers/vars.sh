@@ -16,7 +16,6 @@ export CONJUR_FOLLOWER_COUNT=1
 
 # Authenticator ID
 export AUTHENTICATOR_ID=k8s-cluster1
-#export AUTHENTICATOR_ID=okd4-cluster1
 
 #Master
 export CONJUR_APPLIANCE_URL=https://dap-master.plangiro.com
@@ -24,7 +23,7 @@ export CONJUR_ACCOUNT=cybr
 
 
 #Conjur Master DNS configuration - If Kubernetes cluster is able to resolve CONJUR_APPLIANCE_URL, DNS=true
-# If not, DNS=false and fill in CONJUR_MASTER_IP CONJUR_MASTER_SERVICE_NAME
+# If not, DNS=false and update CONJUR_MASTER_IP CONJUR_MASTER_SERVICE_NAME
 export CONJUR_MASTER_DNS=true
 export CONJUR_MASTER_IP=3.8.111.170
 export CONJUR_MASTER_SERVICE_NAME=dap-master
