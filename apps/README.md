@@ -15,13 +15,16 @@ $ kubectl create ns demoapps
 $ oc create project demoapps
 ```
 
-- Create Docker registry secret (This step is only needed if you are using a private docker container registry):
+- Create Docker registry secret:
+
+**Note**: This step is only needed if you are using a private docker container registry. If you are using docker hub(public or private) remove ```--docker-server``` flag.
+
 ```bash
-$ kubectl create secret docker-registry docker-hub-registry --docker-server=your-docker-server --docker-username=your-username --docker-password="mypassword" --docker-email=myuser@plangiro.com  -n cyberark
+$ kubectl create secret docker-registry docker-hub-registry --docker-server=your-docker-server --docker-username=your-username --docker-password="mypassword" --docker-email=myuser@plangiro.com  -n demoapps
 ```
 
 ```bash
-oc create secret docker-registry docker-hub-registry --docker-server=index.docker.io/v1 --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@plangiro.com -n cyberark
+oc create secret docker-registry docker-hub-registry --docker-server=index.docker.io/v1 --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@plangiro.com -n demoapps
 ```
 
 - Update the following env vars within ```vars.sh``` file:
