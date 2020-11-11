@@ -114,7 +114,7 @@ curl -k  \
      --data "$k8s_provider_db_url" \
       $CONJUR_MASTER_FQDN/secrets/$CONJUR_ACCOUNT/variable/dev/$AUTHENTICATOR_ID/$K8S_PROVIDER_CONJUR_POLICY_NAME/url
 
-pushd $PLATFORM > /dev/null 2>&1
+pushd yaml > /dev/null 2>&1
   sed "s#{{ DEMOAPPS_DB_PASSWORD }}#$password#g" ./mssql.template.yml > ./tmp.${DEMOAPPS_NAMESPACE}.mssql.yml 
   sed "s#{{ DEMOAPPS_DB_PASSWORD }}#$password#g" ./mysql.template.yml > ./tmp.${DEMOAPPS_NAMESPACE}.mysql.yml 
   sed "s#{{ DEMOAPPS_DB_PASSWORD }}#$password#g" ./postgres.template.yml > ./tmp.${DEMOAPPS_NAMESPACE}.postgres.yml 

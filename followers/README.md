@@ -2,6 +2,7 @@
 
 ## Usage
 - The ``` vars.sh ``` file needs to be updated accordingly to your environment.
+- Scripts have an order that needs to be followed.
 
 ### Pre-requisites
 

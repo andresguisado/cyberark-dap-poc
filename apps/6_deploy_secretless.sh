@@ -38,7 +38,7 @@ deploy_secretless() {
   esac
 
 
-  sed -e "s#{{ SECRETLESS_BROKER_IMAGE }}#$SECRETLESS_BROKER_IMAGE#g" "./$PLATFORM/secretless.yml" |
+  sed -e "s#{{ SECRETLESS_BROKER_IMAGE }}#$SECRETLESS_BROKER_IMAGE#g" "./yaml/secretless.yml" |
     sed -e "s#{{ SECRETLESS_SERVICEACCOUNT }}#$SECRETLESS_SERVICEACCOUNT#g" |
     sed -e "s#{{ SECRETLESS_APP_IMAGE }}#$DEMOAPP_IMAGE#g" |
     sed -e "s#{{ SECRETLESS_DB_URL }}#$secretless_db_url#g" |

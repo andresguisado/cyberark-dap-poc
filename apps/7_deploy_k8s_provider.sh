@@ -18,7 +18,7 @@ deploy_k8s_provider_app() {
   announce "Deploying K8s provider app."
   
 
-  sed -e "s#{{ K8S_PROVIDER_IMAGE }}#$CONJUR_K8S_PROVIDER_IMAGE#g" "./$PLATFORM/k8s-provider.yml" |
+  sed -e "s#{{ K8S_PROVIDER_IMAGE }}#$CONJUR_K8S_PROVIDER_IMAGE#g" "./yaml/k8s-provider.yml" |
     sed -e "s#{{ DEMOAPP_IMAGE }}#$DEMOAPP_IMAGE#g" |
     sed -e "s#{{ K8S_PROVIDER_APP_CONTAINER_NAME }}#$K8S_PROVIDER_APP_CONTAINER_NAME#g" |
     sed -e "s#{{ DB_PLATFORM }}#$DEMOAPPS_DB#g" |

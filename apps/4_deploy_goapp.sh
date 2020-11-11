@@ -16,7 +16,7 @@ deploy_goapp() {
      deployment/goapp 
   announce "Deploying goapp."
   
-  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./$PLATFORM/goapp.yml" |
+  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./yaml/goapp.yml" |
     sed -e "s#{{ GOAPP_IMAGE }}#$GOAPP_IMAGE#g" |
     sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
     sed -e "s#{{ GOAPP_SERVICEACCOUNT }}#$GOAPP_SERVICEACCOUNT#g" |

@@ -56,7 +56,7 @@ esac
   mssql)
     echo "Deploying demo apps backend"
 
-    sed -e "s#{{ DEMOAPPS_MSSQL_IMAGE }}#$DEMOAPPS_MSSQL_IMAGE#g" ./$PLATFORM/tmp.${DEMOAPPS_NAMESPACE}.mssql.yml |
+    sed -e "s#{{ DEMOAPPS_MSSQL_IMAGE }}#$DEMOAPPS_MSSQL_IMAGE#g" ./yaml/tmp.${DEMOAPPS_NAMESPACE}.mssql.yml |
       sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
       sed -e "s#{{ DEMOAPPS_DB_USER }}#$DEMOAPPS_DB_USER#g" |
       sed -e "s#{{ DEMOAPPS_DB_NAME }}#$DEMOAPPS_DB_NAME#g" |
@@ -72,7 +72,7 @@ esac
 
     echo "Deploying demo apps backend"
 
-    sed -e "s#{{ DEMOAPPS_PG_IMAGE }}#$DEMOAPPS_PG_IMAGE#g" ./$PLATFORM/tmp.${DEMOAPPS_NAMESPACE}.postgres.yml |
+    sed -e "s#{{ DEMOAPPS_PG_IMAGE }}#$DEMOAPPS_PG_IMAGE#g" ./yaml/tmp.${DEMOAPPS_NAMESPACE}.postgres.yml |
       sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
       sed -e "s#{{ DEMOAPPS_DB_USER }}#$DEMOAPPS_DB_USER#g" |
       sed -e "s#{{ DEMOAPPS_DB_NAME }}#$DEMOAPPS_DB_NAME#g" |
@@ -81,7 +81,7 @@ esac
   mysql)
     echo "Deploying demo apps backend"
     
-    sed -e "s#{{ DEMOAPPS_MYSQL_IMAGE }}#$DEMOAPPS_MYSQL_IMAGE#g" ./$PLATFORM/tmp.${DEMOAPPS_NAMESPACE}.mysql.yml |
+    sed -e "s#{{ DEMOAPPS_MYSQL_IMAGE }}#$DEMOAPPS_MYSQL_IMAGE#g" ./yaml/tmp.${DEMOAPPS_NAMESPACE}.mysql.yml |
       sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
       sed -e "s#{{ DEMOAPPS_DB_USER }}#$DEMOAPPS_DB_USER#g" |
       sed -e "s#{{ DEMOAPPS_DB_NAME }}#$DEMOAPPS_DB_NAME#g" |

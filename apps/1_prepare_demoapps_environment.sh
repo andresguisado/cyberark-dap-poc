@@ -22,7 +22,7 @@ create_namespace() {
     echo "Namespace '$DEMOAPPS_NAMESPACE' exists, not going to create it."
     set_namespace $DEMOAPPS_NAMESPACE
   else
-    sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" ./$PLATFORM/demoapps-namespace.yml |
+    sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" ./yaml/demoapps-namespace.yml |
     $cli apply -f -
     set_namespace $DEMOAPPS_NAMESPACE
   fi
@@ -35,7 +35,7 @@ create_apps_service_accounts() {
 
     for serviceaccounts in "${SERVICEACCOUNTS[@]}"
     do
-      sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./$PLATFORM/apps-service-account.yml" |
+      sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./yaml/apps-service-account.yml" |
       sed -e "s#{{ SERVICEACCOUNT_NAME }}#$serviceaccounts#g" |
       $cli apply -f -
     done
@@ -46,7 +46,7 @@ create_apps_service_accounts() {
 create_k8s_authenticator_role_binding() {
   announce "Creating k8s authenticator role binding."  
 
-  sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./$PLATFORM/k8s-authenticator-role-binding.yml" |
+  sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./yaml/k8s-authenticator-role-binding.yml" |
   sed -e "s#{{ CONJUR_SERVICEACCOUNT }}#$CONJUR_SERVICEACCOUNT#g" |
   sed -e "s#{{ CONJUR_NAMESPACE }}#$CONJUR_NAMESPACE#g" |
   $cli apply -f -
@@ -57,7 +57,7 @@ create_k8s_authenticator_role_binding() {
 create_k8s_provider_role_binding() {
   announce "Creating k8s provider role binding."  
 
-  sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./$PLATFORM/k8s-provider-role-binding.yml" |
+  sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" "./yaml/k8s-provider-role-binding.yml" |
   sed -e "s#{{ K8S_PROVIDER_SERVICEACCOUNT }}#$K8S_PROVIDER_SERVICEACCOUNT#g" |
   $cli apply -f -
 

@@ -27,7 +27,7 @@ deploy_java_init_app() {
 
   announce "Deploying JAVA Init APP."
 
-  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./$PLATFORM/java-init-app.yml" |
+  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./yaml/java-init-app.yml" |
     sed -e "s#{{ JAVA_INIT_APP_IMAGE }}#$JAVA_INIT_IMAGE#g" |
     sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
     sed -e "s#{{ JAVA_INIT_SERVICEACCOUNT }}#$JAVA_INIT_SERVICEACCOUNT#g" |
@@ -60,7 +60,7 @@ deploy_java_sidecar_app() {
 
   announce "Deploying JAVA Sidecar APP."
   
-  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./$PLATFORM/java-sidecar-app.yml" |
+  sed -e "s#{{ CONJUR_AUTHENTICATOR_IMAGE }}#$CONJUR_AUTHENTICATOR_IMAGE#g" "./$yaml/java-sidecar-app.yml" |
     sed -e "s#{{ JAVA_SIDECAR_APP_IMAGE }}#$JAVA_SIDECAR_IMAGE#g" |
     sed -e "s#{{ DEMOAPPS_NAMESPACE }}#$DEMOAPPS_NAMESPACE#g" |
     sed -e "s#{{ JAVA_SIDECAR_SERVICEACCOUNT }}#$JAVA_SIDECAR_SERVICEACCOUNT#g" |
