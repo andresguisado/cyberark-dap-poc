@@ -14,13 +14,13 @@ $ kubectl create ns cyberark
 $ oc create project cyberark
 ```
 
-- Create Docker registry secret(This step is only needed if you are using a private docker registry):
+- Create Docker registry secret(This step is only needed if you are using a private docker container registry):
 ```bash
-$ kubectl create secret docker-registry docker-hub-registry --docker-server=index.docker.io/v1 --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@gmail.com  -n cyberark
+$ kubectl create secret docker-registry docker-hub-registry --docker-server=your-docker-server --docker-username=your-username --docker-password="mypassword" --docker-email=myuser@plangiro.com  -n cyberark
 ```
 
 ```bash
-oc create secret docker-registry docker-hub-registry --docker-server=index.docker.io/v1 --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@gmail.com  -n cyberark
+oc create secret docker-registry docker-hub-registry --docker-server=index.docker.io/v1 --docker-username=andresguisado --docker-password="mypassword" --docker-email=myuser@plangiro.com -n cyberark
 ```
 
 - Update the following env vars within ```vars.sh``` file:
