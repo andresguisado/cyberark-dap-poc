@@ -3,7 +3,7 @@
   - !host
     id: k8s-provider-account
     annotations:
-      authn-k8s/namespace: demoapps-xqcb-syst
+      authn-k8s/namespace: demoapps
       authn-k8s/service-account: k8s-provider-account
       kubernetes/authentication-container-name: authenticator
       kubernetes: true

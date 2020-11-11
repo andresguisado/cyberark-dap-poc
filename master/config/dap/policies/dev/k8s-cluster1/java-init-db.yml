@@ -3,7 +3,7 @@
   - !host
     id: java-init-app-account
     annotations:
-      authn-k8s/namespace: demoapps-xqcb-syst
+      authn-k8s/namespace: demoapps
       authn-k8s/service-account: java-init-app-account
       authn-k8s/authentication-container-name: authenticator
       kubernetes: true

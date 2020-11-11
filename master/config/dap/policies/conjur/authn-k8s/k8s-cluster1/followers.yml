@@ -12,7 +12,7 @@
   - !host
     id: dap-cluster
     annotations:
-      authn-k8s/namespace: cyberark-xqcb-syst
+      authn-k8s/namespace: cyberark
       authn-k8s/service-account: dap-cluster
       kubernetes/authentication-container-name: authenticator
       kubernetes: true
