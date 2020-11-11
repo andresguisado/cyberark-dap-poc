@@ -5,7 +5,7 @@ set -eo pipefail
 
 main() {
 
-  #create_namespace
+  create_namespace
   set_namespace $DEMOAPPS_NAMESPACE
   create_apps_service_accounts
   create_k8s_authenticator_role_binding
