@@ -34,7 +34,7 @@ services:
 #     JENKINS and ANSIBLE OSS    #
 ##################################
   jenkins:
-    image: "andresguisado/jenkins-trivy:latest"
+    image: "andresguisado/jenkins-conjur-ansible:latest"
     container_name: jenkins
     restart: always
     ports:
