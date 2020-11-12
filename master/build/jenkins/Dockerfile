@@ -12,6 +12,7 @@ RUN pip3 install ansible
 RUN dnf install epel-release -y
 RUN dnf makecache
 RUN dnf install sshpass -y
+RUN curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/master/contrib/install.sh | sh -s -- -b /usr/local/bin
 #USER jenkins
 #RUN ansible-galaxy collection install cyberark.conjur
 #RUN mkdir -p $JENKINS_HOME/.ansible/collections
